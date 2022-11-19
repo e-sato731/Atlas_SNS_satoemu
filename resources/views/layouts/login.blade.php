@@ -2,12 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<html lang="ja">
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
-    <title></title>
+    <title>Atlas</title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -17,24 +19,32 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
+      <script src="{{ asset('js/app.blade.js') }}"></script>
+
     <!--OGPタグ/twitterカード-->
 </head>
 <body>
+
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
+        <h1><a href="{{URL::to('/top')}}"><img src="{{asset('images/atlas.png')}}" alt="Atlas"></a></h1>
+        </div>
+            <nav id="g-navi">
+                <div id="accordion" class="accordion-container">
+                    <p class="accordion-title ">〇〇さん<img src="images/icon1.png"></p>
                 <ul>
+                    <!--/〇〇に遷移する-->
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
-        </div>
+        </nav>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
@@ -46,19 +56,18 @@
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <!--/〇〇に遷移する-->
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
 </body>
 </html>

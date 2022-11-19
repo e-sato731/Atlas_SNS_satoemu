@@ -11,15 +11,17 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-//Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
 
 
 //ログアウト中のページ
+//Controllerとつなげる（ルーティング）
 Route::get('/login', 'Auth\LoginController@login');
 Route::post('/login', 'Auth\LoginController@login');
 
@@ -34,7 +36,18 @@ Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
+//URLが/searchだった場合、UsersControllerのsearchメソッドを読み込む
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','FollowsController@followList');
+//URLが/follow-listだった場合、FollowsControllerのfollowListメソッドを読み込む
+
+Route::get('/follower-list','FollowsController@followerList');
+//URLが/follower-listだった場合、FollowsControllerのfollowerListメソッドを読み込む
+
+Route::get('/logout','Auth\LoginController@logout');
+
+Route::post('/create','PostsController@create');
+//URLが/createだった場合、PostsControllerのcreateメソッドを読み込む
+
+Route::get('post/{id}/delete','PostsController@delete');

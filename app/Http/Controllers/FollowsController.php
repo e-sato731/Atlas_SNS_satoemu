@@ -14,3 +14,5 @@ class FollowsController extends Controller
         return view('follows.followerList');
     }
 }
+//web.phpとつなげる（ルーティング）
+//function～がメソッド
