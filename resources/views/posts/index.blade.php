@@ -32,7 +32,7 @@ $current_date = date("Y-m-d H:i:s");
             <tr>
                 <td>{{ $post->post }}</td>
                 <td>{{ $post->created_at }}</td>
-                 <td><input type="image" name="submit" img src="{{asset('images/trash.png')}}" alt="削除" onclick="return confirm('こちらの投稿を削除します。よろしいでしょうか？')" location.href="/post/{{$post->id}}/delete" ></input></td>
+                 <td><a href="/post/{{$post->id}}/delete"><img src="{{asset('images/trash.png')}}"  onclick="return confirm('こちらの投稿を削除します。よろしいでしょうか？')"></a></td>
             </tr>
             @endforeach
 @endsection
