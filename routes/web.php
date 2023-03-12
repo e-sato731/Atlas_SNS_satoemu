@@ -42,10 +42,10 @@ Route::get('/users/{data}/profile','UsersController@profile')->name('users.profi
 Route::get('/search','UsersController@search') ->name('users.search');
 //URLが/searchだった場合、UsersControllerのsearchメソッドを読み込む
 
-Route::get('/follows/{data}/follow-list','FollowsController@followList')->name('follows.followList');
+Route::get('/follow-list','FollowsController@followList');
 //URLが/follow-listだった場合、FollowsControllerのfollowListメソッドを読み込む
 
-Route::get('/follows/{data}/follower-list','FollowsController@followerList')->name('follows.followerList');
+Route::get('/follower-list','FollowsController@followerList');
 //URLが/follower-listだった場合、FollowsControllerのfollowerListメソッドを読み込む
 
 Route::get('/logout','Auth\LoginController@logout');
