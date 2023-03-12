@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -23,6 +24,9 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="{{ asset('js/app.blade.js') }}"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
     <!--OGPタグ/twitterカード-->
 </head>
@@ -34,7 +38,8 @@
         </div>
             <nav id="g-navi">
                 <div id="accordion" class="accordion-container">
-                    <p class="accordion-title ">〇〇さん<img src="images/icon1.png"></p>
+                    <p class="accordion-title js-accordion-title">
+                        <?php $user = Auth::user(); ?>{{ $user->username }} さん<img src="images/icon1.png"></p>
                 <ul>
                     <!--/〇〇に遷移する-->
                     <li><a href="/top">ホーム</a></li>

@@ -3,7 +3,9 @@
 @section('content')
 
 <div id="clear">
-  <p>{{ session('username')}}さん</p>
+  <p>
+<?php $user = Auth::user(); ?>{{ $user->username }}
+さん</p>
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>

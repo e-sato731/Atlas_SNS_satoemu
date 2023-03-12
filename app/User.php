@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\User;
+use Follow;
+use Auth;
+use Validator;
 
 class User extends Authenticatable
 {
@@ -14,8 +18,17 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'username', 'mail', 'password',
+        'username',
+        'mail',
+        'password',
+        'password-comfirm',
+        'bio',
+        'icon-image',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -27,17 +40,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function followUsers()
-    {
-        return $this->belongsToMany('App\User', 'follow_users', 'followed_id', 'following_id');
-    }
-
-     public function follows()
-    {
-        return $this->belongsToMany('App\User', 'follow_users', 'following_id', 'followed_id');
-    }
 
     public function posts() {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post','username');
     }
+
+     // フォローする
+   public function follow(User $user_id)
+   {
+       return $this->follows()->attach($user_id);
+   }
+
+   // フォロー解除する
+   public function unfollow(User $user_id)
+   {
+       return $this->follows()->detach($user_id);
+   }
+
 }

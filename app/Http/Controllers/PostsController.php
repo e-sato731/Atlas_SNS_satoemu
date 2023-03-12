@@ -12,9 +12,9 @@ use Validator;
 class PostsController extends Controller
 {
 //表示するメソッド
-    public function index(){
+    public function index(Request $request){
         $posts = Post::get();
-        return view('posts.index',['posts'=> $posts]);
+        return view('posts.index',['post'=> $posts]);
     }
 
 //投稿するメソッド
@@ -26,7 +26,7 @@ class PostsController extends Controller
       //dd($post);
       \DB::table('posts')->insert([
      'post' => $post,
-     'user_id' => $user
+     'user_id' => $user,
 ]);
 
 return redirect('top');
@@ -38,6 +38,20 @@ return redirect('top');
         \DB::table('posts')
             ->where('id', $id)
             ->delete();
+
+        return redirect('top');
+    }
+
+//編集するメソッド
+ public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $post = $request->input('upPost');
+        \DB::table('posts')
+          ->where('id',$id)
+          ->update(
+            ['posts' => $post]
+        );
 
         return redirect('top');
     }
