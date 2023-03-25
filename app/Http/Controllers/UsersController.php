@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
+use App\Follow;
 use Auth;
 
 //User.phpからユーザー情報を取り出す

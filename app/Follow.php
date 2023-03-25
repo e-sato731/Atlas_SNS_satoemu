@@ -2,8 +2,10 @@
 
 namespace App;
 
-use Auth;
+use App\Follow;
+use App\User;
 use Validator;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Follow extends Model
@@ -18,15 +20,15 @@ class Follow extends Model
         return $this->hasMany('App\Post');
     }
 
-    // フォローしているユーザーを取得
-    public function follows()
-   {
-     return $this->belongsToMany('App\Models\User', 'follows', 'following_id', 'followed_id');
-   }
+  //   // フォローしているユーザーを取得
+  //   public function follows()
+  //  {
+  //    return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
+  //  }
 
-   //フォロワーのユーザーを取得
-   public function followers()
-   {
-     return $this->belongsToMany('App\Models\User', 'follows', 'followed_id', 'following_id');
-   }
+  //  //フォロワーのユーザーを取得
+  //  public function followers()
+  //  {
+  //    return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id');
+  //  }
 }

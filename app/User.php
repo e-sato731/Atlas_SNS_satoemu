@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\User;
-use Follow;
+use App\Follow;
 use Auth;
 use Validator;
 
@@ -45,16 +45,28 @@ class User extends Authenticatable
         return $this->hasMany('App\Post','username');
     }
 
-     // フォローする
-   public function follow(User $user_id)
+//      // フォローする
+//    public function follow(User $user_id)
+//    {
+//        return $this->follows()->attach($user_id);
+//    }
+
+//    // フォロー解除する
+//    public function unfollow(User $user_id)
+//    {
+//        return $this->follows()->detach($user_id);
+//    }
+
+   // フォローしているユーザーを取得
+    public function follows()
    {
-       return $this->follows()->attach($user_id);
+     return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
    }
 
-   // フォロー解除する
-   public function unfollow(User $user_id)
+   //フォロワーのユーザーを取得
+   public function followers()
    {
-       return $this->follows()->detach($user_id);
+     return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id');
    }
 
 }
