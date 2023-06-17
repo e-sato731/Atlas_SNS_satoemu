@@ -42,42 +42,4 @@ class UsersController extends Controller
         ]);//()には変数が入る
     }
 
-public function follow(User $data)
-   {
-       $follower = auth()->user();
-       // フォローしているか
-       $is_following = $follower->isFollowing($data->id);
-       if(!$is_following) {
-           // フォローしていなければフォローする
-           $follower->follow($data->id);
-           return back();
-       }
-   }
-
-   // フォロー解除
-   public function unfollow(User $data)
-   {
-       $follower = auth()->user();
-       // フォローしているか
-       $is_following = $follower->isFollowing($data->id);
-       if($is_following) {
-           // フォローしていればフォローを解除する
-           $follower->un_follow($data->id);
-           return back();
-       }
-   }
-
-   public function upload(Request $request)
-    {
-        // ディレクトリ名
-        $dir = 'sample';
-
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('image')->getClientOriginalName();
-
-        // sampleディレクトリに画像を保存
-        $request->file('image')->store('public/' . $dir);
-
-        return redirect('/');
-    }
 }

@@ -24,8 +24,8 @@
           </tr>
 
           <tr>
-              <th>password comfirm</th>
-              <th><input type="password" name="password-comfirm" value="{{ old('password-comfirm') }}"></th>
+              <th>password confirm</th>
+              <th><input type="password" name="password-confirm" value="{{ old('password-confirm') }}"></th>
           </tr>
 
           <tr>

@@ -4,8 +4,10 @@
 
 <div id="clear">
   <p>
-<?php $user = Auth::user(); ?>{{ $user->username }}
-さん</p>
+    @auth
+   {{ Auth::user()->username }} さん</h1>
+   @endauth
+
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>

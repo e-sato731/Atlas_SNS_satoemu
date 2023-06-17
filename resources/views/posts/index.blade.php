@@ -48,7 +48,7 @@ $current_date = date("Y-m-d H:i:s");
           </div>
 
           <div class="modal-footer">
-            <a href="/posts/{{$post->id}}/update"><img src="{{asset('images/edit.png')}}" data-toggle="upPost" data-target="#modal-footer" alt="更新"></a></td>
+            <td><a href="/posts/{{$post->id}}/update"><img src="{{asset('images/edit.png')}}" alt="更新"></a></td>
           </div>
           {!! Form::close() !!}
         </div>

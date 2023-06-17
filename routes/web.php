@@ -34,35 +34,36 @@ Route::post('/added', 'Auth\RegisterController@added');
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 
+//プロフィール
 Route::get('/profile','UsersController@profile');
 
+//プロフィール
 Route::get('/users/{data}/profile','UsersController@profile')->name('users.profile');
-//URLが/profileだった場合、UsersControllerのprofileメソッドを読み込む
 
+//ユーザー検索
 Route::get('/search','UsersController@search') ->name('users.search');
-//URLが/searchだった場合、UsersControllerのsearchメソッドを読み込む
 
+//フォローリスト
 Route::get('/follow-list','FollowsController@followList');
-//URLが/follow-listだった場合、FollowsControllerのfollowListメソッドを読み込む
 
+//フォロワーリスト
 Route::get('/follower-list','FollowsController@followerList');
-//URLが/follower-listだった場合、FollowsControllerのfollowerListメソッドを読み込む
 
+//ログイン中のページ
 Route::get('/logout','Auth\LoginController@logout');
 
-
+//投稿を送信する
 Route::post('/create','PostsController@create');
-//URLが/createだった場合、PostsControllerのcreateメソッドを読み込む
 
+//投稿を削除する
 Route::get('/posts/{id}/delete','PostsController@delete');
-//URLが/deleteだった場合、PostsControllerのdeleteメソッドを読み込む
 
-Route::get('/post/{id}/update', 'PostsController@update')->name('posts.index');
-Route::post('/update','PostsController@update');
-//URLが/updateだった場合、PostsControllerのupdateメソッドを読み込む
+//投稿を編集する
+Route::get('/posts/{id}/update', 'PostsController@update')->name('posts.index');
+Route::post('/posts/{id}/update', 'PostsController@update')->name('posts.index');
 
-Route::post('users/{user}/follow', 'FollowsController@follow')->name('follow');
-//URLが/follow{user}だった場合、FollowsControllerのfollowsメソッドを読み込む
+//フォローする
+Route::post('/follow', 'FollowsController@follow')->name('follows.follow');
 
-Route::post('users/{user}/unfollow', 'FollowsController@un_follow')->name('unfollow');
-//URLが/un_follow{user}だった場合、FollowsControllerのfollowメソッドを読み込む
+//フォロー解除する
+Route::post('/unfollow', 'FollowsController@unfollow')->name('follows.unfollow');

@@ -12,27 +12,21 @@
 
 <!--UsersControllerで定義した変数からデータを取り出して表示させる-->
 @foreach($data as $data)
+  @if ($data->id !== Auth::id())
+
 <div>{{ $data -> username }}</div>
-
-
- <div class="follow-contents">
-@if(Auth::user() != $data)
-  <form action="{{ route('unfollow', ['user' => $data->id]) }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
-</div>
-
-<!--フォロー、フォロー解除ボタン-->
-<button type="submit" class="btn btn-danger">フォロー解除</button>
-</form>
-
-@else
-
-<button type="submit" class="btn btn-primary">フォローする</button>
-</form>
-
-</div>
-
 @endif
-@endforeach
+
+ <form action="{{ route('follows.follow') }}" method="POST">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $data->id }}">
+            <button type="submit" class="btn btn-primary">
+                @if ($data->is_followed)
+                    フォロー解除
+                @else
+                    フォローする
+                @endif
+            </button>
+        </form>
+    @endforeach
 @endsection

@@ -9,6 +9,11 @@ use App\User;
 use Auth;
 use Validator;
 
+// 書き込み日時を取得
+$current_date = date("Y-m-d H:i:s");
+
+
+
 class PostsController extends Controller
 {
 //表示するメソッド
@@ -43,14 +48,14 @@ return redirect('top');
     }
 
 //編集するメソッド
- public function update(Request $request)
+ public function update(Request $request,$id)
     {
         $id = $request->input('id');
-        $post = $request->input('upPost');
+        $up_post = $request->input('upPost');
         \DB::table('posts')
           ->where('id',$id)
           ->update(
-            ['posts' => $post]
+            ['post' => $up_post]
         );
 
         return redirect('top');
