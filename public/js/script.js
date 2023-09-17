@@ -1,12 +1,11 @@
-$(function () {
-  $('.accordion-container').on('click', function () {
 
-    $(this).next().slideToggle(200);
+$('.js-accordion-title').on('click', function () {
+  //クリックでコンテンツを開閉
+  $(this).next().slideToggle(200);
+  //矢印の向きを変更
+  $(this).toggleClass('open', 200);
+}).next().hide();
 
-    $(this).toggleClass('open', 200);
-  });
-
-});
 
 $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget)
@@ -19,4 +18,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   var modal = $(this)  //モーダルを取得
   modal.find('.modal-title').text('New message to ' + recipient) //モーダルのタイトルに値を表示
   modal.find('.modal-body input#recipient-name').val(recipient) //inputタグにも表示
-})
+});
+
+// $(function () {
+//   alert('OK!');
+// });

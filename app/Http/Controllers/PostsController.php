@@ -54,6 +54,7 @@ return redirect('top');
         $up_post = $request->input('upPost');
         \DB::table('posts')
           ->where('id',$id)
+          ->where('post' ,$post)
           ->update(
             ['post' => $up_post]
         );

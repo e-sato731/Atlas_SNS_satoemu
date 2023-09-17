@@ -27,7 +27,10 @@ class CreateFollowsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('follows');
+         Schema::table('follows', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropColumn('username');
+        });
     }
 
     /**

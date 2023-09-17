@@ -18,7 +18,12 @@
   <!--iphoneのアプリアイコン指定-->
   <link rel="apple-touch-icon-precomposed" href="画像のURL" />
   <!--OGPタグ/twitterカード-->
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+
 </head>
+
 <body>
   <header>
     <h1><img src="images/atlas.png"></h1>
@@ -27,8 +32,6 @@
   <div id="container">
     @yield('content')
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="{{ asset('js/app.js') }}"></script>
-      <script src="{{ asset('js/app.blade.js') }}"></script>
+
 </body>
 </html>

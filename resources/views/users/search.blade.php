@@ -11,22 +11,26 @@
 <p>検索ワード：{{$keyword}}</p>
 
 <!--UsersControllerで定義した変数からデータを取り出して表示させる-->
-@foreach($data as $data)
-  @if ($data->id !== Auth::id())
+@foreach($data as $datas)
+      @if ($datas->id !== Auth::id())
+      <div>{{ $datas -> username }}</div>
 
-<div>{{ $data -> username }}</div>
-@endif
-
- <form action="{{ route('follows.follow') }}" method="POST">
+        @if (Auth::user()->isFollowing($datas))
+<!--フォロー解除-->
+        <form action="{{ route('follows.unfollow', $datas->id) }}" method="POST">
+          <!--$datasの中からユーザーidを取り出す-->
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger">フォロー解除</button>
+</form>
+    @else
+<!--フォローする-->
+        <form action="{{ route('follows.follow', ['id' => $datas->id]) }}" method="POST">
+          <!--$datasの中からユーザーidを取り出す-->
             @csrf
-            <input type="hidden" name="user_id" value="{{ $data->id }}">
-            <button type="submit" class="btn btn-primary">
-                @if ($data->is_followed)
-                    フォロー解除
-                @else
-                    フォローする
-                @endif
-            </button>
+            <button type="submit" class="btn btn-primary">フォローする</button>
         </form>
-    @endforeach
+ @endif
+ @endif
+@endforeach
 @endsection

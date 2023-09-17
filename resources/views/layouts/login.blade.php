@@ -21,15 +21,15 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
 
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="{{ asset('js/app.js') }}"></script>
-      <script src="{{ asset('js/app.blade.js') }}"></script>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('/js/script.js') }}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+</head>
 
     <!--OGPタグ/twitterカード-->
-</head>
+
 <body>
 
     <header>
@@ -37,9 +37,9 @@
         <h1><a href="{{URL::to('/top')}}"><img src="{{asset('images/atlas.png')}}" alt="Atlas"></a></h1>
         </div>
             <nav id="g-navi">
-                <div id="accordion" class="accordion-container">
-                    <p class="accordion-title js-accordion-title">
-                        <?php $user = Auth::user(); ?>{{ $user->username }} さん<img src="images/icon1.png"></p>
+                <div class="accordion-container">
+                    <p class="accordion-title">
+                        <?php $user = Auth::user(); ?>{{ $user->username }} さん <img src="{{$user->icon}}" alt="アイコン"></p>
                 <ul>
                     <!--/〇〇に遷移する-->
                     <li><a href="/top">ホーム</a></li>

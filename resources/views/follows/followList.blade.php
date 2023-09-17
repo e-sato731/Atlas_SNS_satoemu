@@ -8,15 +8,9 @@
 <form action='follows.followList' method="GET"></form>
 
 <ul>
-@foreach ($following_id as $following_id)
+@foreach ($following_id as $followings)
  <li>
-     <img src="{{ asset('storage/'.$following_id -> icon) }}"  alt="アイコン">
-    <span>{{ $following_id -> username }}</span>
-   <ul>
-      @foreach ($posts->where('user_id', $following_id -> following_id) as $posts)
-     <li>{{ $posts -> post }}</li>
-     @endforeach
-    </ul>
+     <button><img src="{{ asset('storage/'. $followings -> images) }}"  alt="アイコン"></button>
   </li>
 @endforeach
 

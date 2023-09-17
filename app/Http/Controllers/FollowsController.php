@@ -14,7 +14,7 @@ class FollowsController extends Controller
    {
     //フォローしているユーザーのIDを取得
     $following_id = Follow::where('following_id', auth()->id())->get();
-    $posts = Post::whereIn('user_id', $following_id->pluck('following_id'))->get();
+    $posts = Post::whereIn('id', $following_id->pluck('following_id'))->get();
     return view('follows.followList', compact('following_id','posts'));
    }
 
@@ -22,30 +22,40 @@ class FollowsController extends Controller
    {
     //フォローされているユーザーのIDを取得
     $followed_id = Follow::where('followed_id', auth()->id())->get();
-    $posts = Post::whereIn('user_id', $followed_id->pluck('followed_id'))->get();
+    $posts = Post::whereIn('id', $followed_id->pluck('followed_id'))->get();
        return view('follows.followerList' ,compact('followed_id','posts'));
    }
 
 
-    public function follow(Request $request)
-    {
-        $followerId = Auth::id();
-        $userId = $request->input('user_id');
+    //フォローする
+    public function follow($id)
+{
+    $loggedInUser = Auth::user()->id;
+// dd($id);
+     \DB::table('follows')->insert([
+     'followed_id' => $id,
+     'following_id' => $loggedInUser,
+]);
 
-        $follow = Follow::where('following_id', $followerId)
-            ->where('followed_id', $userId)
-            ->first();
+return redirect('/search');
+}
+    // if ($loggedInUser->isFollowing($id)) {
+    //     // 既にフォローしている場合はアンフォロー
+    //     $loggedInUser->unfollow($id);
+    // } else {
+    //     // フォローしていない場合はフォロー
+    //     $loggedInUser->follow($id);
+    // }
 
-        if ($follow) {
-            // アンフォロー
-            $follow->delete();
-        } else {
-            // フォロー
-            Follow::create([
-                'following_id' => $followerId,
-                'followed_id' => $userId,
-            ]);
-        }
+
+    //フォロー解除する
+public function unfollow($id)
+{
+    $loggedInUser = Auth::user()->id;
+    \DB::table('follows')
+            ->where('followed_id', $id)
+            ->where('following_id', $loggedInUser)
+            ->delete();
 
         return redirect('/search');
     }

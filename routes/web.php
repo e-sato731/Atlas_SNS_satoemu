@@ -63,7 +63,7 @@ Route::get('/posts/{id}/update', 'PostsController@update')->name('posts.index');
 Route::post('/posts/{id}/update', 'PostsController@update')->name('posts.index');
 
 //フォローする
-Route::post('/follow', 'FollowsController@follow')->name('follows.follow');
+Route::post('users/{id}/follow', 'FollowsController@follow')->name('follows.follow');
 
 //フォロー解除する
-Route::post('/unfollow', 'FollowsController@unfollow')->name('follows.unfollow');
+Route::delete('users/{id}/unfollow', 'FollowsController@unfollow')->name('follows.unfollow');
